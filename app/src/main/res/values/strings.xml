@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ExTracker</string>
+    <string name="source_of_income">Source of Income</string>
+    <string name="income">Income</string>
+    <string name="time_basis">Time Range</string>
+    <string name="set_your_source_of_income">Set your source of income</string>
+    <string name="welcome_to_expenses_tracker">Welcome to Expenses Tracker</string>
+    <string name="add_category">Add category</string>
+    <string name="set_your_default_category">Set your default category</string>
+    <string name="expense">Expense</string>
+    <string name="title">Title</string>
+    <string name="_0_00">0.00</string>
+    <string name="mm_dd_yyyy">MM/dd/yyyy</string>
+    <string name="set_maximum_of_3_categories">Set maximum of 3 categories</string>
+
+    <string name="save">Save</string>
+    <string name="set_income">Set Income</string>
+    <string name="required_field_is_empty">Required field is empty.</string>
+    <string name="description">Description</string>
+    <string name="others">Others</string>
+    <string name="add">add</string>
+    <string name="expenses">Expenses</string>
+    <string name="my_day">My Day</string>
+    <string name="click_view_ex">click to view expenses today</string>
+</resources>

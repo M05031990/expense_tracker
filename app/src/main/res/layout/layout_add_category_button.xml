@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <Button   xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppButtonStyle"
+        android:id="@+id/btn_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_add"
+        android:textAllCaps="false"
+        android:drawableTint="@color/white"
+        android:text="@string/add" />

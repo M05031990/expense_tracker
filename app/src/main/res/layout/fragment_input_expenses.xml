@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.start.StartActivity"
+            android:padding="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_32">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/AppTextViewStyle.Title"
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/expense"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageButton
+                    android:id="@+id/btn_close"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_close"
+                    android:backgroundTint="?colorPrimary"
+                    android:tint="@color/white"
+                    android:padding="@dimen/dp_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <EditText
+                android:id="@+id/edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:hint="@string/title"
+                android:inputType="text"/>
+
+            <EditText
+                android:id="@+id/edit_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:hint="@string/_0_00"
+                android:inputType="number"/>
+
+
+            <EditText
+                android:id="@+id/edit_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:hint="@string/mm_dd_yyyy"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_calendar"/>
+
+            <CheckBox
+                style="@style/AppTextViewStyle.Subtitle"
+                android:id="@+id/checkBoxMyDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Show in My Day"
+                android:checked="true"
+                android:buttonTint="?colorPrimary"/>
+
+            <TextView
+                style="@style/AppTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:text="@string/add_category" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/edit_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:hint="@string/description"
+                android:inputType="textMultiLine"
+                android:textAlignment="gravity"
+                android:gravity="top"
+                android:lines="3"
+                android:background="@drawable/selector_edittext_bg2"/>
+
+            <Button
+                style="@style/AppButtonStyle"
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:text="@string/save" />
+            <Button
+                style="@style/AppButtonStyle"
+                android:id="@+id/btn_delete"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/holo_red_dark"
+                android:text="Delete" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</layout>
