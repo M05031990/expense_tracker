@@ -7,13 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.mee.expensetracker.ui.progress.ProgressDialog
 
 
 /**
  * Created by Michelle Dayangco
  */
 open class BaseDialogFragment: DialogFragment() {
+    private var progressDialog: ProgressDialog? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        progressDialog = ProgressDialog(requireContext())
 
+    }
     override fun onStart() {
         super.onStart()
         if (dialog != null) {
@@ -25,5 +31,19 @@ open class BaseDialogFragment: DialogFragment() {
 
     fun toast(message:String){
         Toast.makeText(requireContext(),message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun showProgressLoader() {
+        progressDialog!!.showDialog(ProgressDialog.DIALOG_CENTERED)
+    }
+
+
+    private fun dismissProgressLoader() {
+        progressDialog!!.dismiss()
+    }
+
+    fun showProgressLoader(show: Boolean){
+        if (show) showProgressLoader()
+        else dismissProgressLoader()
     }
 }

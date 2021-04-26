@@ -147,14 +147,14 @@ class SaveExpenseDialogFragment: BaseDialogFragment() {
         fun onSaveExpense(expense: Expense)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is SaveExpenseDialogFragmentListener) {
-            listener = context
-        } else {
-            throw RuntimeException("$context must implement SaveExpenseDialogFragmentListener")
-        }
-    }
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        if (context is SaveExpenseDialogFragmentListener) {
+//            listener = context
+//        } else {
+//            throw RuntimeException("$context must implement SaveExpenseDialogFragmentListener")
+//        }
+//    }
 
     override fun onDetach() {
         super.onDetach()
@@ -163,8 +163,9 @@ class SaveExpenseDialogFragment: BaseDialogFragment() {
     companion object{
 
         @JvmStatic
-        fun newInstance(expense: Expense? = null) = SaveExpenseDialogFragment().apply {
+        fun newInstance(expense: Expense? = null, listener: SaveExpenseDialogFragmentListener) = SaveExpenseDialogFragment().apply {
             this.expense  = expense
+            this.listener = listener
         }
     }
 

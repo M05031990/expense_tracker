@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -96,4 +96,11 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:1.0.0-alpha10"
+
+
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    // https://firebase.google.com/docs/android/setup#available-libraries
 }

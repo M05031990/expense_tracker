@@ -3,7 +3,6 @@ package com.mee.expensetracker.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.carded.api.CompositeDisposableContainer
 import io.reactivex.disposables.CompositeDisposable
 
 open class BaseViewModel : ViewModel(), CompositeDisposableContainer {

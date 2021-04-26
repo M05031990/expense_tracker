@@ -20,7 +20,6 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    private val dbSaveIncomeUseCase: DBSaveIncomeUseCase,
     private val dbGetAllExpensesUseCase: DBGetAllExpensesUseCase,
     private val dbGetIncomeUseCase: DBGetIncomeUseCase,
     private val sharedPreferenceManager: SharedPreferenceManager) : BaseViewModel() {
@@ -38,19 +37,6 @@ class SettingViewModel @Inject constructor(
             }, onError = onError
         )
     }
-
-    fun save(onSuccess: Action, onError: Action, onProgress: Consumer<Boolean>) {
-        income?.let {
-            dbSaveIncomeUseCase(it).subscribe(this,
-                onComplete = Action {
-                    onSuccess.run()
-                }, onError = Consumer {
-                    onError.run()
-                }, onProgress = onProgress
-            )
-        }
-    }
-
     fun getTotalExpense(onTotal: Consumer<Double>, onError: Consumer<String>) {
         dbGetAllExpensesUseCase().subscribe(this,
             onSuccess = Consumer {

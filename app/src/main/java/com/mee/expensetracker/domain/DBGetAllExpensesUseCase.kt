@@ -1,6 +1,7 @@
 package com.mee.expensetracker.domain
 
-import com.carded.api.*
+import com.mee.expensetracker.base.SingleUseCaseWrapper
+import com.mee.expensetracker.base.SingleWrapper
 import com.mee.expensetracker.db.AppDatabase
 import com.mee.expensetracker.model.Expense
 import com.mee.expensetracker.model.Income

@@ -9,7 +9,6 @@ import com.mee.expensetracker.ui.progress.ProgressDialog
  * Created by Michelle Dayangco
  */
 open class BaseActivity: AppCompatActivity() {
-    var navigator: Navigator? = null
     private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +18,7 @@ open class BaseActivity: AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        navigator?.let {navigator ->
-            if(navigator.isBackStackEmpty()){
-                super.onBackPressed()
-            } else { navigator.previous() }
-        }?:run { super.onBackPressed() }
+        super.onBackPressed()
     }
 
     fun toast(message:String){

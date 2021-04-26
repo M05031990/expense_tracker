@@ -14,18 +14,5 @@ import javax.inject.Inject
  * Created by Michelle Dayangco
  */
 @HiltViewModel
-class StartViewModel @Inject constructor(private val dbSaveIncomeUseCase: DBSaveIncomeUseCase,
-                                         private val sharedPreferenceManager: SharedPreferenceManager): BaseViewModel() {
-    var income: Income? = null
-    fun save(onSuccess: Action, onError: Action, onProgress: Consumer<Boolean>){
-        income?.let {
-            dbSaveIncomeUseCase(it).subscribe(this,
-                onComplete = Action {
-                    sharedPreferenceManager.setInitialize()
-                    onSuccess.run()
-                }, onError = Consumer {
-                    onError.run()
-                }, onProgress = onProgress)
-        }
-    }
+class StartViewModel @Inject constructor(): BaseViewModel() {
 }
