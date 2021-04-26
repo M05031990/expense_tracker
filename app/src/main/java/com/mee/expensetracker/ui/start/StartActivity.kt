@@ -18,7 +18,7 @@ import io.reactivex.functions.Consumer
 @AndroidEntryPoint
 class StartActivity : BaseActivity(), SourceIncomeDialogFragment.SourceIncomeDialogFragmentListener {
     lateinit var binding: ActivityStartBinding
-
+    val viewModel: StartViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_start)
@@ -28,8 +28,12 @@ class StartActivity : BaseActivity(), SourceIncomeDialogFragment.SourceIncomeDia
         }
 
         binding.btnStart.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            if (viewModel.isInit()){
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }else
+                toast("Set a default income.")
+
         }
     }
 

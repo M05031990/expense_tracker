@@ -11,6 +11,8 @@ import java.util.*
 data class Expense (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    var uid: String,
+    var user_uid: String,
     var title: String,
     var amount: Double,
     var create_at: Date,
@@ -18,5 +20,5 @@ data class Expense (
     var description: String,
     var isMyDay: Boolean? = true){
 
-    constructor(): this(0,"",0.0,Date(), arrayListOf(),"")
+    constructor(): this(0,"","","",0.0,Date(), arrayListOf(),"")
 }

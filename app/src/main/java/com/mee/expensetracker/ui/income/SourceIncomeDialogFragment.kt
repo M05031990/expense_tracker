@@ -120,19 +120,6 @@ class SourceIncomeDialogFragment: BaseDialogFragment(), AdapterView.OnItemSelect
 
     }
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        if (context is SourceIncomeDialogFragmentListener) {
-//            listener = context
-//        } else {
-//            throw RuntimeException("$context must implement SourceIncomeDialogFragmentListener")
-//        }
-//    }
-//
-//    override fun onDetach() {
-//        super.onDetach()
-//        listener = null
-//    }
     companion object{
         const val ARG_INCOME = "argIncome"
         @JvmStatic

@@ -24,6 +24,7 @@ open class CompletableWrapper(private val completable: Completable): BaseObserve
         disposableContainer.getCompositeDisposable().add(this.disposable)
 
    }
+
    fun subscribe(disposableContainer: CompositeDisposableContainer,response: MutableLiveData<RequestResponse<Nothing>>? = null,
                  onProgress: Consumer<in Boolean>? = null,onComplete: Action? = null,
                  onError: Consumer<in String>? = null,

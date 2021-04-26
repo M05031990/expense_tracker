@@ -4,13 +4,11 @@ import com.mee.expensetracker.base.BaseViewModel
 import com.mee.expensetracker.db.SharedPreferenceManager
 import com.mee.expensetracker.domain.DBGetAllExpensesUseCase
 import com.mee.expensetracker.domain.DBGetIncomeUseCase
-import com.mee.expensetracker.domain.DBSaveIncomeUseCase
 import com.mee.expensetracker.model.Expense
 import com.mee.expensetracker.model.Income
 import com.mee.expensetracker.model.IncomeTimeRange
 import com.mee.expensetracker.ui.datepicker.DateTimeDialogFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import java.util.*
 import javax.inject.Inject

@@ -5,7 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.mee.expensetracker.base.BaseViewModel
 import com.mee.expensetracker.base.RequestResponse
 import com.mee.expensetracker.db.SharedPreferenceManager
-import com.mee.expensetracker.domain.DBSaveIncomeUseCase
+import com.mee.expensetracker.domain.SaveIncomeUseCase
+import com.mee.expensetracker.domain.SignInUseCase
 import com.mee.expensetracker.model.Income
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.functions.Action
@@ -17,9 +18,9 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class IncomeViewModel @Inject constructor(
-    private val dbSaveIncomeUseCase: DBSaveIncomeUseCase,
-    private val sharedPreferenceManager: SharedPreferenceManager
-) : BaseViewModel() {
+    private val saveIncomeUseCase: SaveIncomeUseCase,
+    private val sharedPreferenceManager: SharedPreferenceManager,
+    private val signInUseCase: SignInUseCase) : BaseViewModel() {
     var income: Income? = null
     private val _saveResponse: MutableLiveData<RequestResponse<Nothing>> = MutableLiveData()
     val saveResponse: LiveData<RequestResponse<Nothing>>
@@ -29,11 +30,24 @@ class IncomeViewModel @Inject constructor(
 
     fun save(updatedIncome: Income) {
 
-        dbSaveIncomeUseCase(updatedIncome).subscribe(this, _saveResponse,
+        if (sharedPreferenceManager.isInitialize()){
+            saveIncome(updatedIncome)
+        }else{
+            signInUseCase().subscribe(this, onComplete = Action {
+                saveIncome(updatedIncome)
+            })
+        }
+
+
+    }
+
+    private fun saveIncome(updatedIncome: Income){
+        saveIncomeUseCase(updatedIncome).subscribe(this, _saveResponse,
             onComplete = Action {
                 setIsInitialize()
+            }, onError = Consumer {
+                _saveResponse.value = RequestResponse.Failure(it)
             })
-
     }
 
     fun setIsInitialize() {
