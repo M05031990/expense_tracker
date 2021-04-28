@@ -2,8 +2,8 @@ package com.mee.expensetracker.ui.settings
 
 import com.mee.expensetracker.base.BaseViewModel
 import com.mee.expensetracker.db.SharedPreferenceManager
-import com.mee.expensetracker.domain.DBGetAllExpensesUseCase
-import com.mee.expensetracker.domain.DBGetIncomeUseCase
+import com.mee.expensetracker.domain.GetExpensesUseCase
+import com.mee.expensetracker.domain.GetIncomeUseCase
 import com.mee.expensetracker.model.Expense
 import com.mee.expensetracker.model.Income
 import com.mee.expensetracker.model.IncomeTimeRange
@@ -18,8 +18,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    private val dbGetAllExpensesUseCase: DBGetAllExpensesUseCase,
-    private val dbGetIncomeUseCase: DBGetIncomeUseCase,
+    private val getExpensesUseCase: GetExpensesUseCase,
+    private val getIncomeUseCase: GetIncomeUseCase,
     private val sharedPreferenceManager: SharedPreferenceManager) : BaseViewModel() {
 
     var income: Income? = null
@@ -28,7 +28,7 @@ class SettingViewModel @Inject constructor(
         onProgress: Consumer<Boolean>,
         onError: Consumer<String>
     ) {
-        dbGetIncomeUseCase().subscribe(this, onProgress = onProgress,
+        getIncomeUseCase().subscribe(this, onProgress = onProgress,
             onSuccess = Consumer {
                 income = it
                 onSuccess.accept(it)
@@ -36,7 +36,7 @@ class SettingViewModel @Inject constructor(
         )
     }
     fun getTotalExpense(onTotal: Consumer<Double>, onError: Consumer<String>) {
-        dbGetAllExpensesUseCase().subscribe(this,
+        getExpensesUseCase().subscribe(this,
             onSuccess = Consumer {
                 onTotal.accept(getTotal(it))
             }, onError = onError

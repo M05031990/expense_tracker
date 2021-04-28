@@ -69,8 +69,9 @@ class SaveExpenseDialogFragment: BaseDialogFragment() {
 
         binding.btnDelete.visibility = if (expense != null) View.VISIBLE else View.GONE
         binding.btnDelete.setOnClickListener {
-            viewModel.delete(expense!!.id!!, Action {
+            viewModel.delete(expense!!, Action {
                 toast("deleted")
+                listener?.onUpdateExpenses()
                 dismiss()
             })
         }
@@ -145,6 +146,7 @@ class SaveExpenseDialogFragment: BaseDialogFragment() {
 
     interface SaveExpenseDialogFragmentListener{
         fun onSaveExpense(expense: Expense)
+        fun onUpdateExpenses()
     }
 
 //    override fun onAttach(context: Context) {

@@ -13,7 +13,8 @@ enum class DefaultCategory {
     BILL("Bill"),
     MOVIE("Movie"),
     ONLINE_SHOPPING("Online Shopping"),
-    GROCERY("Grocery");
+    GROCERY("Grocery"),
+    MEDICINE("Medicine");
 
     var title: String
     constructor(title: String){

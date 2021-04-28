@@ -3,11 +3,10 @@ package com.mee.expensetracker.model
 /**
  * Created by Michelle Dayangco.
  */
-enum class ShortTimeRange {
-    DAILY("Daily"),
-    WEEKLY("Weekly"),
-    MONTHLY("Monthly"),
-    YEARLY("Yearly");
+enum class FilterDateRange {
+    TODAY("Today"),
+    MONTH("Month"),
+    YEAR("Year");
 
     val title: String
     constructor(title: String){
@@ -16,20 +15,20 @@ enum class ShortTimeRange {
 
     companion object{
 
-        fun getType(order: Int): ShortTimeRange{
+        fun getType(order: Int): FilterDateRange{
             values().forEach {
                 if (it.ordinal == order)
                     return it
             }
-            return MONTHLY
+            return TODAY
         }
 
-        fun getType(title: String): ShortTimeRange{
+        fun getType(title: String): FilterDateRange{
             values().forEach {
                 if (it.title == title)
                     return it
             }
-            return MONTHLY
+            return TODAY
         }
 
         fun getList(): List<String>{

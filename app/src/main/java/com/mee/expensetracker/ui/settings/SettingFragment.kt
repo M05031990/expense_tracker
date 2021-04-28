@@ -49,7 +49,6 @@ class SettingFragment : BaseFragment(), SourceIncomeDialogFragment.SourceIncomeD
         }
     }
 
-
     private fun populate(){
         viewModel.income?.let {
             binding.txtAmount.text = ""+ it.amount
@@ -60,9 +59,8 @@ class SettingFragment : BaseFragment(), SourceIncomeDialogFragment.SourceIncomeD
 
             viewModel.getTotalExpense(onTotal = Consumer {total ->
                 binding.txtExAmount.text = ""+total
-                if (total < it.amount){
-                    updateProgress(total, it.amount)
-                }else updateProgress(it.amount, it.amount)
+                updateProgress(total, it.amount)
+
             }, onError = Consumer {
                 toast("Error when getting total expenses.")
             })
@@ -72,8 +70,9 @@ class SettingFragment : BaseFragment(), SourceIncomeDialogFragment.SourceIncomeD
     }
 
     private fun updateProgress(progress: Double, max: Double){
-        binding.progressBar.progress = progress.toInt()
-        binding.progressBar.max = max.toInt()
+        val per = (progress/max)*100.0f
+        binding.progressBar.progress = per.toInt()
+        binding.progressBar.max = 100
     }
 
     override fun onSourceIncome(income: Income) {

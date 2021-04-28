@@ -95,6 +95,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:progressTint="?colorPrimary"
+                        android:secondaryProgressTint="?colorAccent"
                         android:scaleY="5"
                         app:layout_constraintBottom_toTopOf="@+id/txt_exAmount"
                         app:layout_constraintEnd_toEndOf="parent"

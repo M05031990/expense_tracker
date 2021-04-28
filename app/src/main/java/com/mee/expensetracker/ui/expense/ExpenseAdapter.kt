@@ -82,6 +82,7 @@ class ExpenseAdapter constructor(var list: MutableList<ExpenseContent>, val call
 
     inner class ItemViewHolder(itemView: View) : BaseViewHolder(itemView) {
         override fun bind(content: ExpenseContent) {
+
             if (content is ExpenseContent.Item){
                 val expense = content.expense
                 itemView.txt_title.text= expense.title
@@ -89,7 +90,7 @@ class ExpenseAdapter constructor(var list: MutableList<ExpenseContent>, val call
                 itemView.txt_category.text = getCategories(expense)
                 itemView.txt_amount.text = ""+expense.amount
                 itemView.txt_date.text = DateTimeDialogFragment.formateDateToString(expense.create_at)
-
+                itemView.setTag(expense.uid)
             }
 
             itemView.setOnClickListener {

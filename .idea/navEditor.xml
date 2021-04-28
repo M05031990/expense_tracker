@@ -17,16 +17,25 @@
                             <option name="y" value="-14" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_mainFragment_to_settingActivity">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="settingActivity">
+                  <entry key="settingFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-135" />
-                            <option name="y" value="-17" />
+                            <option name="x" value="-65" />
+                            <option name="y" value="-13" />
                           </Point>
                         </option>
                       </LayoutPositions>

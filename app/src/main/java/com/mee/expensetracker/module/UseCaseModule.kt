@@ -1,8 +1,6 @@
 package com.mee.expensetracker.module
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import com.mee.expensetracker.db.AppDatabase
 import com.mee.expensetracker.domain.*
 import com.mee.expensetracker.domain.repository.FAuthRepository
@@ -13,7 +11,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -24,35 +21,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class UseCaseModule {
 
-
     @Singleton
     @Provides
-    @Named("Check_Network")
-    fun providesNetworkChecking(@ApplicationContext context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
-
-    @Singleton
-    @Provides
-    fun providesDBSaveIncomeUseCase(appDatabase: AppDatabase,
-                                  repository: FStoreIncomeRespository,
-                                  @Named("Check_Network") hasNetwork: Boolean) = SaveIncomeUseCase(appDatabase, repository,hasNetwork)
+    fun providesDBSaveIncomeUseCase(@ApplicationContext context: Context,
+                                    appDatabase: AppDatabase,
+                                  repository: FStoreIncomeRespository) = SaveIncomeUseCase(context,appDatabase, repository)
 
     @Singleton
     @Provides
@@ -60,21 +33,27 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun providesDBSaveExpenseUseCase(appDatabase: AppDatabase,
-                                     repository: FStoreExpenseRespository,
-                                     @Named("Check_Network") hasNetwork: Boolean) = DBSaveExpenseUseCase(appDatabase, repository,hasNetwork)
+    fun providesDBSaveExpenseUseCase(@ApplicationContext context: Context,
+                                     appDatabase: AppDatabase,
+                                     repository: FStoreExpenseRespository) = SaveExpenseUseCase(context,appDatabase, repository)
 
     @Singleton
     @Provides
-    fun providesDBGetAllExpensesUseCase(appDatabase: AppDatabase) = DBGetAllExpensesUseCase(appDatabase)
+    fun providesDBGetAllExpensesUseCase(@ApplicationContext context: Context,
+                                        appDatabase: AppDatabase,
+                                        repository: FStoreExpenseRespository) = GetExpensesUseCase(context,appDatabase, repository)
 
     @Singleton
     @Provides
-    fun providesDBDeleteExpenseUseCase(appDatabase: AppDatabase) = DBDeleteExpenseUseCase(appDatabase)
+    fun providesDBDeleteExpenseUseCase(@ApplicationContext context: Context,
+                                       appDatabase: AppDatabase,
+                                       repository: FStoreExpenseRespository) = DeleteExpenseUseCase(context,appDatabase, repository)
 
     @Singleton
     @Provides
-    fun providesDBGetIncomeUseCase(appDatabase: AppDatabase) = DBGetIncomeUseCase(appDatabase)
+    fun providesDBGetIncomeUseCase(@ApplicationContext context: Context,
+                                   appDatabase: AppDatabase,
+                                   repository: FStoreIncomeRespository) = GetIncomeUseCase(context,appDatabase,repository)
 
 
 }
